@@ -13,3 +13,20 @@ module.exports = {
 ```
 
 那么，在`components`下的`md`文件实际访问路径就是`/components/:post`，所以匹配不到。
+
+### 2、bisheng-plugin-react 不生效
+
+首先，在`lazyload: true`的情况下，是使用了`src/loader/source-loader.js`来处理`md`文件，使用`themeConfig.plugins`，所以在这里断点查看实际使用了哪些`plugins`，并确定路径正确。
+
+> 大部分不生效可能是因为路径错误。
+
+由于不知道怎么配，所以直接修改`node_modules/bisheng-theme-one`下的配置文件：
+
+```js
+module.exports = {
+    // ...
+    plugins: [
+        path.join(__dirname, '..', '..', 'bisheng-plugin-react?lang=__react'),
+    ],
+}
+```

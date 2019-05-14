@@ -9,10 +9,8 @@ The first article which is posted by BiSheng.
 
 ---
 
-Hello world!
+render button!
 
-```js
-(function () {
-  console.log('Hello world!');
-})();
+```__react
+ReactDOM.render(<button>click</button>, mountNode);
 ```

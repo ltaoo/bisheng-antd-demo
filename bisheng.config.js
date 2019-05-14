@@ -6,4 +6,7 @@ module.exports = {
         home: '/',
         sitename: 'One',
     },
+    plugins: [
+        'bisheng-plugin-react?lang=__react',
+    ],
 }
