@@ -1,0 +1,21 @@
+{
+  "name": "bisheng-antd-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development bisheng start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ltaoo",
+  "license": "ISC",
+  "dependencies": {
+    "bisheng": "^1.2.4",
+    "bisheng-plugin-react": "^1.0.0",
+    "bisheng-theme-one": "^0.2.35"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}
