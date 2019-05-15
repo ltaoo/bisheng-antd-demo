@@ -5,6 +5,9 @@ module.exports = {
     themeConfig: {
         home: '/',
         sitename: 'One',
+        plugins: [
+            'bisheng-plugin-react?lang=__react',
+        ],
     },
     plugins: [
         'bisheng-plugin-react?lang=__react',

@@ -30,3 +30,5 @@ module.exports = {
     ],
 }
 ```
+
+`bisheng-plugin-react`是作用在`theme`上的，那么只能自己实现`theme`，而不能使用第三方，因为`bisheng.config.js`无法覆盖`theme.config.js`。
