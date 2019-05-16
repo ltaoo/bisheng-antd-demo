@@ -1,5 +1,39 @@
 # 使用 bisheng 记录
 
+## 使用 bisheng-theme-antd
+
+其实更推荐的做法是将`bisheng-theme-antd`拷贝到本地`theme`文件夹。在使用`bisheng-theme-antd`（后面简称`theme`）前，有一些强制约定需要遵守。
+
+### 目录结构
+
+参考`antd`的目录，`components`是读取`md`文件的根文件夹，在之下直接存放所有公共组件：
+
+```js
+components
+├── button
+│   ├── demo
+│   │   └── basic.md
+│   └── index.md
+├── form
+│   └── index.md
+└── input
+    └── index.md
+```
+
+当访问路径`http://127.0.0.1:8000/components/button`时，会将`components/button`解析，以`components/button`去寻找是否有对应的`md`文件。
+> 对应代码在`bisheng-theme-antd/src/template/Content/index.js`中`collect`部分。
+
+### 代码示例
+
+在每个组件文件夹下，如果存在`demo`文件夹，则会将该文件夹下所有`md`文件读取，并以`Demo`组件的形式展示：
+
+![image-20190516093251199](/image-20190516093251199.png)
+
+### 依赖
+
+- bisheng-plugin-antd
+- bisheng-plugin-react
+
 ## 问题
 
 ### 1、详情页 404
@@ -32,3 +66,21 @@ module.exports = {
 ```
 
 `bisheng-plugin-react`是作用在`theme`上的，那么只能自己实现`theme`，而不能使用第三方，因为`bisheng.config.js`无法覆盖`theme.config.js`。
+
+在最终使用插件处理前，会使用`lib/utils/resolve-plugins.js`的`resolvePlugins`方法去寻找插件路径，并返回有效插件。
+
+```js
+function resolvePlugin(plugin) {
+    var result;
+    try {
+        // https://www.npmjs.com/package/resolve
+        result = resolve.sync(plugin, {
+            basedir: process.cwd()
+        });
+    } catch (e) {} // eslint-disable-line no-empty
+    return result;
+}
+```
+
+是以当前执行命令为前提去找，所以在`theme`中安装的插件是找不到的，需要在项目，也就是这里安装。
+> 如果`theme`是以依赖的形式安装，那它的依赖应该会放在项目中，就不存在这个问题了？如果只是将项目`clone`，依赖也不好解决，这又是一个问题。
