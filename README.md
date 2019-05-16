@@ -25,9 +25,46 @@ components
 
 ### 代码示例
 
+组件根文件，即`index.md`，必须有
+
+```js
+---
+category: Components
+type: 通用
+title: Button
+subtitle: 按钮
+---
+```
+
+`category`和`type`是用来控制生成侧边菜单，菜单显示内容为 `title + subtitle`。
+
 在每个组件文件夹下，如果存在`demo`文件夹，则会将该文件夹下所有`md`文件读取，并以`Demo`组件的形式展示：
 
 ![image-20190516093251199](/image-20190516093251199.png)
+
+每个`md`文件会生成一个`Demo`组件，该文件内容有需要符合格式：
+
+```js
+---
+order: 0
+title:
+  zh-CN: 按钮类型
+  en-US: Type
+---
+
+## zh-CN
+
+按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
+
+## en-US
+
+There are `primary` button, `default` button, `dashed` button and `danger` button in antd.
+
+这里可以放代码块，lang 需要是 jsx
+
+```
+
+`order`表示显示的顺序，`title`会显示在`Demo`和右侧。正文内容会根据当前语言显示。
 
 ### 依赖
 
@@ -35,6 +72,8 @@ components
 - bisheng-plugin-react
 
 ## 问题
+
+每次修改了`md`文件需要重启服务。
 
 ### 1、详情页 404
 404 就是没有匹配到路由，这个很明显，但是为什么呢？因为`theme-one`配置的是`/posts/:post`路径，而我们指定`source`为其他名字的文件夹，比如
